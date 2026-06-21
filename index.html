@@ -287,6 +287,7 @@ input[type=range]::-webkit-slider-thumb {
     <div class="tab" onclick="showTab('baby', this)">👶 Baby</div>
     <div class="tab" onclick="showTab('jazz', this)">🎷 Jazz & Latin</div>
     <div class="tab" onclick="showTab('news', this)">📈 News</div>
+    <div class="tab" onclick="showTab('rock', this)">🎸 Rock</div>
     <div class="tab" onclick="showTab('study', this)">🧠 Study & Focus</div>
   </div>
 </div>
@@ -302,6 +303,8 @@ input[type=range]::-webkit-slider-thumb {
     <div class="grid" id="g-jazz-all"></div>
     <div class="section-header" style="margin-top:1.5rem;">📈 News & Finance</div>
     <div class="grid" id="g-news-all"></div>
+    <div class="section-header" style="margin-top:1.5rem;">🎸 Rock & Alternative</div>
+    <div class="grid" id="g-rock-all"></div>
     <div class="section-header" style="margin-top:1.5rem;">🧠 Study & Focus</div>
     <div class="grid" id="g-study-all"></div>
   </div>
@@ -322,6 +325,12 @@ input[type=range]::-webkit-slider-thumb {
   <div class="section" id="tab-news">
     <div class="section-header">News & Finance</div>
     <div class="grid" id="g-news"></div>
+  </div>
+
+  <!-- ROCK -->
+  <div class="section" id="tab-rock">
+    <div class="section-header">Rock & Alternative</div>
+    <div class="grid" id="g-rock"></div>
   </div>
 
   <!-- STUDY -->
@@ -388,10 +397,24 @@ const stations = {
       url: "https://vprjazz.streamguys1.com/vprjazz64.aac" },
     { name: "Los 40 México 🇲🇽", desc: "#1 Mexican pop in Spanish", emoji: "🌺", bg: "#20100d", color: "#e85d4a", num: "CH 13",
       url: "http://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_SC" },
-    { name: "W Radio México", desc: "Live Mexican pop", emoji: "🎸", bg: "#1f150a", color: "#e8884a", num: "CH 14",
-      url: "https://18493.live.streamtheworld.com/W_RADIO_SC" },
-    { name: "KIIS FM", desc: "Today's biggest pop hits", emoji: "🎵", bg: "#160d20", color: "#b07ce8", num: "CH 15",
-      url: "http://playerservices.streamtheworld.com/api/livestream-redirect/KIISFMAAC" },
+    { name: "Exa FM México 🇲🇽", desc: "Live Mexican pop & hits", emoji: "🎸", bg: "#1f150a", color: "#e8884a", num: "CH 14",
+      url: "https://playerservices.streamtheworld.com/api/livestream-redirect/XHEXAFMAAC" },
+    { name: "Top 40 Hits 🇺🇸", desc: "Today's biggest pop hits", emoji: "🎵", bg: "#160d20", color: "#b07ce8", num: "CH 15",
+      web: "https://www.accuradio.com/channel/accuradio-top-40/" },
+  ],
+  rock: [
+    { name: "KEXP Seattle", desc: "Indie & alt rock — Linkin Park, Radiohead…", emoji: "🎸", bg: "#1a0d0d", color: "#ef4444", num: "CH 40",
+      url: "https://kexp.streamguys1.com/kexp160.aac" },
+    { name: "KROQ Los Angeles", desc: "World famous alt rock — classic & new", emoji: "🤘", bg: "#0d0d1a", color: "#7c6af7", num: "CH 41",
+      url: "https://playerservices.streamtheworld.com/api/livestream-redirect/KROQFMAAC" },
+    { name: "Radio Paradise Rock", desc: "Eclectic rock — no ads, listener supported", emoji: "🌊", bg: "#0a1a10", color: "#4ae87c", num: "CH 42",
+      url: "https://stream.radioparadise.com/rock-128" },
+    { name: "Classic Rock Florida", desc: "Led Zeppelin, AC/DC, Linkin Park…", emoji: "🎵", bg: "#1a1200", color: "#f5c842", num: "CH 43",
+      url: "https://playerservices.streamtheworld.com/api/livestream-redirect/WJRR_SC" },
+    { name: "Hard Rock & Metal", desc: "Heavy guitar — Metallica, Tool, Korn…", emoji: "💀", bg: "#0d0d0d", color: "#aaa", num: "CH 44",
+      url: "https://igor.torontocast.com:1025/stream" },
+    { name: "90s & 2000s Alt Rock", desc: "Nirvana, Linkin Park, The Killers…", emoji: "📼", bg: "#1a0a0a", color: "#e85d4a", num: "CH 45",
+      web: "https://www.accuradio.com/channel/accuradio-alternative-rock-now/" },
   ],
   study: [
     { name: "Baroque & Bach", desc: "60–80 BPM classical — best for retention", emoji: "🎹", bg: "#0d1520", color: "#4ab8e8", num: "CH 30",
@@ -452,7 +475,21 @@ function buildAll() {
     baby:  ['g-baby-all', 'g-baby'],
     jazz:  ['g-jazz-all', 'g-jazz'],
     news:  ['g-news-all', 'g-news'],
-    study: ['g-study-all', 'g-study'],
+    rock: [
+    { name: "KEXP Seattle", desc: "Indie & alt rock — Linkin Park, Radiohead…", emoji: "🎸", bg: "#1a0d0d", color: "#ef4444", num: "CH 40",
+      url: "https://kexp.streamguys1.com/kexp160.aac" },
+    { name: "KROQ Los Angeles", desc: "World famous alt rock — classic & new", emoji: "🤘", bg: "#0d0d1a", color: "#7c6af7", num: "CH 41",
+      url: "https://playerservices.streamtheworld.com/api/livestream-redirect/KROQFMAAC" },
+    { name: "Radio Paradise Rock", desc: "Eclectic rock — no ads, listener supported", emoji: "🌊", bg: "#0a1a10", color: "#4ae87c", num: "CH 42",
+      url: "https://stream.radioparadise.com/rock-128" },
+    { name: "Classic Rock Florida", desc: "Led Zeppelin, AC/DC, Linkin Park…", emoji: "🎵", bg: "#1a1200", color: "#f5c842", num: "CH 43",
+      url: "https://playerservices.streamtheworld.com/api/livestream-redirect/WJRR_SC" },
+    { name: "Hard Rock & Metal", desc: "Heavy guitar — Metallica, Tool, Korn…", emoji: "💀", bg: "#0d0d0d", color: "#aaa", num: "CH 44",
+      url: "https://igor.torontocast.com:1025/stream" },
+    { name: "90s & 2000s Alt Rock", desc: "Nirvana, Linkin Park, The Killers…", emoji: "📼", bg: "#1a0a0a", color: "#e85d4a", num: "CH 45",
+      web: "https://www.accuradio.com/channel/accuradio-alternative-rock-now/" },
+  ],
+  study: ['g-study-all', 'g-study'],
   };
   for (const [key, ids] of Object.entries(targets)) {
     ids.forEach(id => {
