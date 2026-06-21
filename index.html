@@ -287,6 +287,7 @@ input[type=range]::-webkit-slider-thumb {
     <div class="tab" onclick="showTab('baby', this)">👶 Baby</div>
     <div class="tab" onclick="showTab('jazz', this)">🎷 Jazz & Latin</div>
     <div class="tab" onclick="showTab('news', this)">📈 News</div>
+    <div class="tab" onclick="showTab('pop', this)">🎵 Pop</div>
     <div class="tab" onclick="showTab('rock', this)">🎸 Rock</div>
     <div class="tab" onclick="showTab('study', this)">🧠 Study & Focus</div>
   </div>
@@ -303,6 +304,8 @@ input[type=range]::-webkit-slider-thumb {
     <div class="grid" id="g-jazz-all"></div>
     <div class="section-header" style="margin-top:1.5rem;">📈 News & Finance</div>
     <div class="grid" id="g-news-all"></div>
+    <div class="section-header" style="margin-top:1.5rem;">🎵 Pop & English Hits</div>
+    <div class="grid" id="g-pop-all"></div>
     <div class="section-header" style="margin-top:1.5rem;">🎸 Rock & Alternative</div>
     <div class="grid" id="g-rock-all"></div>
     <div class="section-header" style="margin-top:1.5rem;">🧠 Study & Focus</div>
@@ -325,6 +328,12 @@ input[type=range]::-webkit-slider-thumb {
   <div class="section" id="tab-news">
     <div class="section-header">News & Finance</div>
     <div class="grid" id="g-news"></div>
+  </div>
+
+  <!-- POP -->
+  <div class="section" id="tab-pop">
+    <div class="section-header">Pop & English Hits</div>
+    <div class="grid" id="g-pop"></div>
   </div>
 
   <!-- ROCK -->
@@ -399,8 +408,18 @@ const stations = {
       url: "http://playerservices.streamtheworld.com/api/livestream-redirect/LOS40_SC" },
     { name: "Exa FM México 🇲🇽", desc: "Live Mexican pop & hits", emoji: "🎸", bg: "#1f150a", color: "#e8884a", num: "CH 14",
       url: "https://playerservices.streamtheworld.com/api/livestream-redirect/XHEXAFMAAC" },
-    { name: "Top 40 Hits 🇺🇸", desc: "Today's biggest pop hits", emoji: "🎵", bg: "#160d20", color: "#b07ce8", num: "CH 15",
+  ],
+  pop: [
+    { name: "AccuRadio Top 40", desc: "Today's biggest pop hits", emoji: "🎵", bg: "#160d20", color: "#b07ce8", num: "CH 15",
       web: "https://www.accuradio.com/channel/accuradio-top-40/" },
+    { name: "iHeart Top 40", desc: "Live pop hits — Taylor, Sabrina, Olivia…", emoji: "💿", bg: "#1a0d20", color: "#e85d9a", num: "CH 16",
+      web: "https://www.iheart.com/live/top-40-pop-radio-9315/" },
+    { name: "BBC Radio 1", desc: "UK's #1 pop station — global hits", emoji: "🇬🇧", bg: "#0d1a20", color: "#3a86ff", num: "CH 17",
+      url: "https://stream.live.vc.bbcmedia.co.uk/bbc_radio_one" },
+    { name: "Virgin Radio UK", desc: "Hot adult contemporary pop", emoji: "🔴", bg: "#200d0d", color: "#ef4444", num: "CH 18",
+      url: "https://icy.unitedradio.it/VirginRadio.mp3" },
+    { name: "RFI Pop", desc: "International pop — French & global", emoji: "🌐", bg: "#0d1520", color: "#60b8f5", num: "CH 19",
+      url: "https://live02.rfi.fr/rfipop-96k.mp3" },
   ],
   rock: [
     { name: "KEXP Seattle", desc: "Indie & alt rock — Linkin Park, Radiohead…", emoji: "🎸", bg: "#1a0d0d", color: "#ef4444", num: "CH 40",
